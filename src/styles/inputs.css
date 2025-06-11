@@ -1,0 +1,26 @@
+.input-field {
+  width: 100%;
+  margin-bottom: 3rem;
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  font-size: var(--text-normal);
+  color: var(--input-text);
+}
+
+/* TODO: */
+.offer-checkbox {
+  margin-top: 2.5rem;
+  padding: 1rem 0;
+  font-size: var(--text-normal);
+}
+
+.offer-checkbox label {
+  padding: 1rem;
+  font-size: var(--text-normal);
+}
+
+.input-field::placeholder {
+  color: var(--input-placeholder);
+}

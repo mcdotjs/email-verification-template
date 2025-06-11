@@ -1,20 +1,98 @@
+@import "./styles/reset.css";
+@import "./styles/buttons.css";
+@import "./styles/inputs.css";
+@import "./styles/container.css";
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --bg-primary: #2D1B69;
+  --bg-secondary: #3D2A7A;
+  --bg-gradient-start: #2D1B69;
+  --bg-gradient-end: #1A4B5C;
+
+  /* Button Colors */
+  --btn-primary: #8B7ED8;
+  --btn-primary-hover: #9A8EE0;
+  --btn-secondary: #F5C842;
+  --btn-secondary-hover: #F7D55C;
+
+  /* Text Colors */
+  --text-primary: #FFFFFF;
+  --text-secondary: #B8A7E8;
+  --text-muted: #9B8BC7;
+  --text-accent: #4ECDC4;
+
+  /* Input & Form Colors */
+  --input-bg: #FFFFFF;
+  --input-border: #E2E8F0;
+  --input-text: #2D3748;
+  --input-placeholder: #A0AEC0;
+
+  /* Accent & Highlight Colors */
+  --accent-green: #48BB78;
+  --accent-teal: #4ECDC4;
+  --accent-orange: #ED8936;
+
+  /* Status & Interactive Colors */
+  --success: #48BB78;
+  --warning: #F5C842;
+  --info: #4299E1;
+  --error: #F56565;
+
+  /* Border & Divider Colors */
+  --border-light: #E2E8F0;
+  --border-medium: #CBD5E0;
+  --divider: #4A5568;
+
+  /* Card & Container Colors */
+  --card-bg: rgba(255, 255, 255, 0.1);
+  --card-border: rgba(255, 255, 255, 0.2);
+  --overlay: rgba(45, 27, 105, 0.9);
+
+  --border-radius: 5px;
+  --text-normal: 1.5rem;
+
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: var(--text-primary);
   background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --shadow-heavy: rgba(0, 0, 0, 0.4);
+}
+
+
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(10px);
+}
+
+.success-icon {
+  color: var(--success);
+}
+
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-muted {
+  color: var(--text-muted);
 }
 
 body,
 html {
   margin: 0;
   padding: 0;
+  overflow: hidden;
+  font-family: "Concert One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }

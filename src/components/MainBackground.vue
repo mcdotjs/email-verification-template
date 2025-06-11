@@ -11,8 +11,10 @@
   .bg-wrapper {
     margin: 0;
     padding: 0;
-    height: 100vh;
-    position: relative;
+    z-index: -1;
+    min-height: 100vh;
+    min-width: 100vw;
+    position: absolute;
     background: #2d234b;
   }
 
