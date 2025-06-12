@@ -1,12 +1,12 @@
 <template>
-  <div class="terms-item">
-    By continuing, you agree to our <a href="#">Temrs of Service</a> and
-    <a href="">Privacy Policy</a>.
+  <div class="resend-item">
+    Didn't get an email? <a href="#">Resend Code</a>.
   </div>
 </template>
 <style lang="css">
-  .terms-item {
+  .resend-item {
     font-size: 1.3rem;
+    height: 66px;
     padding: 1rem;
     max-width: 580px;
     margin: 0 auto;

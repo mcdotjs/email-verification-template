@@ -1,42 +1,26 @@
 <template>
   <MainBackground />
-  <div class="main-grid-container">
-    <MainHeader />
-    <MainAdvantages />
-    <ConnectWrapper />
-    <TermOfService />
+  <UpperLeftButtons />
+  <div
+    v-if="currentStep ==1 || currentStep == 2"
+    class="main-grid-container"
+  >
+    <ConnectAndVerify />
+  </div>
+
+  <div v-else-if="currentStep == 3">
+    <ChoosePlan />
+  </div>
+
+  <div v-else>
+    <SuccessPage />
   </div>
 </template>
 
 <script setup>
-  import MainHeader from "./components/MainHeader.vue";
-  import MainBackground from "./components/MainBackground.vue";
-  import MainAdvantages from "./components/MainAdvantages.vue";
-  import ConnectWrapper from "./components/ConnectWrapper.vue";
-  import TermOfService from "./components/TermOfService.vue";
-  import axios from "axios";
-  import {ref, onBeforeMount} from "vue";
-
-  const products = ref(null);
-  const getProducts = async () => {
-    await axios
-      .get("http://localhost:8080/api/products")
-      .then((res) => {
-        products.value = res.data;
-      })
-      .catch(async (error) => {
-        return error;
-      });
-  };
-
-  onBeforeMount(() => {
-    getProducts();
-  });
-
-
+  import ChoosePlan from "./views/ChoosePlan.vue";
+  import ConnectAndVerify from "./views/ConnectAndVerify.vue";
+  import SuccessPage from "./views/SuccessPage.vue";
+  import {inject} from "vue";
+  const currentStep = inject("current_step")
 </script>
-<style
-  scoped
-  lang="css"
->
-</style>

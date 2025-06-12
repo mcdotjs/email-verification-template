@@ -1,0 +1,180 @@
+<template>
+  <div class="choose-view">
+    <MainHeader
+      :header="texts.steps[step].header"
+      :subheading="texts.steps[step].subheading"
+    />
+    <div class="choose-product-container">
+      <div class="card-wrapper">
+        <ProductCard
+          v-for="(p, i) in products"
+          @clicked="selectedProduct"
+          :key="i"
+          :best="p.duration == 'year'?true: false"
+          :time="p.billed"
+          :currency="p.currency_mark"
+          :price="p.price"
+          :per="p.duration"
+          :billed="p.billed"
+          :trial="p.trial_days"
+          :title="p.title"
+          :selected="p.duration == computedSelected"
+        />
+      </div>
+      <p class="cancel-p">
+        Cancel anytime
+      </p>
+
+      <button
+        @click="startTrial"
+        class="secondary-button "
+      >Start my free trial</button>
+    </div>
+  </div>
+</template>
+<script setup>
+  import axios from "axios";
+  import {ref, onBeforeMount, inject, computed} from "vue";
+  import ProductCard from "../components/ProductCard.vue";
+
+  const step = inject("current_step")
+  const texts = inject("texts")
+  const userId = inject("user_id")
+
+  const products = ref(null)
+
+  onBeforeMount(async () => {
+    products.value = await getProducts();
+  });
+
+  const getProducts = async () => {
+    let products = null;
+    await axios
+      .get("http://localhost:8080/api/products")
+      .then((res) => {
+        products = res.data;
+      })
+      .catch(async (error) => {
+        return error;
+      });
+    const newProducts = {}
+    const durationMap = {
+      "monthly": "month",
+      "year": "year"
+    }
+
+    for (const p in products) {
+      const newP = augmentProduct(products[p], p)
+      newProducts[durationMap[p]] = newP
+    }
+    return newProducts
+  };
+
+
+  const augmentProduct = (p, key) => {
+    const temp = {}
+    const currencyMarks = {
+      "USD": "$",
+      "EUR": "ec"
+    }
+    const durationMap = {
+      "monthly": "month",
+      "year": "year"
+    }
+
+    const billedMap = {
+      "monthly": "monthly",
+      "year": "annually"
+    }
+    const titleMap = {
+      "monthly": "monthly",
+      "year": "annuall"
+    }
+
+    for (const field in p) {
+      temp[field] = p[field]
+      if (field == "currency") {
+        temp["currency_mark"] = currencyMarks[p[field]]
+      }
+      temp["duration"] = durationMap[key]
+      temp["billed"] = billedMap[key]
+      temp["title"] = titleMap[key]
+      temp["selected"] = true
+    }
+    return temp
+  }
+
+  const myProduct = ref("year")
+
+  const selectedProduct = (e) => {
+    const r = Object.keys(products.value).find(i => e == i)
+    myProduct.value = r
+  };
+
+  const computedSelected = computed(() => myProduct.value)
+
+  const startTrial = async () => {
+    await axios
+      .post(
+        "http://localhost:8080/api/start-trial",
+        {user_id: userId.value},
+        {withCredentials: true},
+      )
+      .then((res) => {
+        if (res.status == 200) {
+          console.log(res)
+          step.value += 1;
+        }
+      })
+      .catch(async (e) => {
+        err.value = true;
+        return e;
+      });
+  }
+</script>
+
+<style lang="css">
+  .card-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+
+
+    @media(min-width:900px) {
+      flex-direction: row;
+      padding: 2rem 1rem;
+    }
+  }
+
+  .cancel-p {
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    font-size: 0.8rem;
+    font-weight: 300;
+    font-family: "Roboto";
+    text-align: center;
+
+    @media(min-width:900px) {
+      flex-direction: row;
+      padding-top: 0rem;
+    }
+
+  }
+
+  .choose-view {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 3rem 0;
+
+    padding-top: 7rem;
+
+    @media (min-width:700px) {
+      padding-top: 8rem;
+    }
+  }
+</style>

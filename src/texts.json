@@ -5,5 +5,19 @@
       "Log In Across All Your Devices",
       "Skip the Line whith Customer Support"
     ]
+  },
+  "steps": {
+    "1": {
+      "header": "Connect Your Account",
+      "subheading": "...and unlock your benefits!"
+    },
+    "2": {
+      "header": "Get Verified!",
+      "subheading": "Enter the one-time code we sent to:"
+    },
+    "3": {
+      "header": "Choose your plan",
+      "subheading": ""
+    }
   }
 }

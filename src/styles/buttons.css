@@ -20,8 +20,57 @@
   color: var(--bg-primary);
   border: none;
   transition: background-color 0.2s ease;
+  padding: 1rem;
+  width: 100%;
+  margin: 1rem auto;
+  max-width: 500px;
+  font-size: 1.3rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
 }
 
 .secondary-button:hover {
   background-color: var(--btn-secondary-hover);
+}
+
+.modify-email-button {
+  position: absolute;
+  top: 2rem;
+  left: 5rem;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 24px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--border-radius);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.modify-email-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+.back-icon-button {
+  padding: 1rem;
+  position: absolute;
+  top: 2.6rem;
+  left: 5.5rem;
+  align-items: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
 }

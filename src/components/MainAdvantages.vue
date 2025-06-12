@@ -20,7 +20,8 @@
 </template>
 
 <script setup>
-  import texts from "../texts.json"
+  import {inject} from "vue";
+  const texts = inject("texts")
 </script>
 
 <style
