@@ -1,6 +1,9 @@
 <template>
   <div class="main-header-container">
-    <div class="heading">{{header}}</div>
+    <div
+      class="heading"
+      v-html="header"
+    ></div>
     <div class="subheading">{{subheading}}</div>
   </div>
 </template>

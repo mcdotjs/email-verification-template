@@ -53,13 +53,19 @@
 <style lang="css">
   .pricing-card {
     position: relative;
-    width: 400px;
+    min-width: 330px;
+    width: 100%;
     background: linear-gradient(135deg,
         rgba(139, 69, 199, 0.3) 0%,
         rgba(75, 0, 130, 0.2) 100%);
     backdrop-filter: blur(20px);
     transition: all 0.3s ease;
     border-radius: 12px;
+
+    @media(min-width:520px) {
+      min-width: 500px;
+    }
+
   }
 
   .best-val-border {
@@ -86,14 +92,24 @@
     font-weight: 200;
     text-transform: uppercase;
     letter-spacing: 1px;
+
+    @media(min-width:1100px) {
+      display: none;
+    }
   }
 
   .plan-title {
     color: #ffffff;
-    font-size: 32px;
+    font-size: 2rem;
     font-weight: 700;
     margin: 0 0 24px 0;
     text-transform: capitalize;
+
+    @media(min-width:1100px) {
+      font-size: 2.3rem;
+      margin: 0;
+      padding: 1rem;
+    }
   }
 
   .pricing-info {
@@ -113,19 +129,35 @@
     font-weight: 700;
     text-align: center;
     margin: 0;
+
+    @media(min-width:1100px) {
+      font-size: 2.8rem;
+      padding-top: 0.8rem;
+    }
   }
 
   .price .time {
     font-size: 1.3rem;
     font-weight: 400;
     color: rgba(255, 255, 255, 0.7);
+
+    @media(min-width:1100px) {
+      font-size: 2rem;
+    }
   }
 
   .billing-period {
+    font-family: "Roboto";
     color: rgba(255, 255, 255, 0.6);
     font-size: 1.1rem;
     text-align: center;
-    margin: 4px auto;
+    margin: 0px auto;
+
+    @media(min-width:1100px) {
+      font-size: 1.3rem;
+      text-align: center;
+      padding-bottom: 1.2rem;
+    }
   }
 
   .trial-badge {
@@ -140,6 +172,13 @@
     height: 100%;
     grid-column: 2;
     grid-row: 6 / span 2;
+
+    @media(min-width:1100px) {
+      display: block;
+      padding: 1rem;
+      font-size: 1.5rem;
+      text-align: center;
+    }
   }
 
   .card-content {
@@ -149,6 +188,9 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(7, 20px);
 
+    @media (min-width:1100px) {
+      display: block;
+    }
 
   }
 
@@ -167,6 +209,13 @@
 
     grid-column: 1;
     grid-row: 2;
+
+    @media(min-width:1100px) {
+      font-size: 1.3rem;
+      gap: 0;
+      margin: 0;
+      position: relative;
+    }
   }
 
   .empty-icon {
@@ -181,6 +230,16 @@
     flex-shrink: 0;
     margin-top: -1.4rem;
     cursor: pointer;
+
+    @media(min-width:1100px) {
+      width: 34px;
+      height: 34px;
+
+      margin: 0;
+      position: absolute;
+      left: 1.3rem;
+      top: 1rem;
+    }
   }
 
   .check-icon {
@@ -191,8 +250,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
     margin-top: -1.4rem;
+
+    @media(min-width:1100px) {
+      width: 34px;
+      height: 34px;
+
+      margin: 0;
+      position: absolute;
+      left: 1.3rem;
+      top: 1rem;
+    }
   }
 
   .check-icon::after {

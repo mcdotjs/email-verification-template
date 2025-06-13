@@ -51,6 +51,10 @@
   --border-radius: 5px;
   --text-normal: 1.5rem;
 
+  --breakpoint-md: 700px;
+  --breakpoint-2md: 900px;
+  --breakpoint-xs: 500px;
+
   line-height: 1.5;
   font-weight: 400;
 
@@ -62,8 +66,8 @@
   -moz-osx-font-smoothing: grayscale;
 
   --shadow-heavy: rgba(0, 0, 0, 0.4);
-}
 
+}
 
 .card {
   background-color: var(--card-bg);
@@ -91,8 +95,8 @@ body,
 html {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
   font-family: "Concert One", sans-serif;
   font-weight: 400;
   font-style: normal;
+  height: 100%;
 }

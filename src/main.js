@@ -9,7 +9,7 @@ import MainAdvantages from './components/MainAdvantages.vue'
 import ConnectWrapper from './components/ConnectWrapper.vue'
 import TermOfService from './components/TermOfService.vue'
 import UpperLeftButtons from './components/UpperLeftButtons.vue'
-
+import SuccessConfetti from './components/SuccessConfetti.vue';
 
 const app = createApp(App)
 
@@ -19,6 +19,7 @@ app.component("MainAdvantages", MainAdvantages)
 app.component("ConnectWrapper", ConnectWrapper)
 app.component("TermOfService", TermOfService)
 app.component("UpperLeftButtons", UpperLeftButtons)
+app.component("SuccessConfetti", SuccessConfetti)
 
 app.provide("texts", texts);
 

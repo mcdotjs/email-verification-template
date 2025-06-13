@@ -1,7 +1,6 @@
 <template>
-  <div class="">
+  <div>
     <div class="small-container">
-      <!-- Step 1 -->
       <div v-if="step == 1">
         <div>
           <input
@@ -11,13 +10,12 @@
           />
         </div>
       </div>
-      <!-- Step 1 -->
       <div v-if="step == 2">
         <div class="code-input-container">
           <input
-            v-for="(num, idx) in codeArr"
+            v-for="(num,idx) in codeArr"
             :data-index="idx"
-            :id="'code' + idx"
+            :id="'code'+idx"
             type="text"
             :value="num"
             class="code-input"
@@ -25,11 +23,12 @@
             placeholder=""
             @input="handleCodeInput"
             @keydown="handleCodeInputKeydown"
-            style=""
-          />
+            style="
+            "
+          >
         </div>
       </div>
-      <!-- Buttons -->
+
       <div
         v-if="step == 1"
         class="offer-checkbox"
@@ -42,8 +41,8 @@
         <label for="check">Send Me Offers, News, and Fun Stuff!</label>
         <button
           @click="generateCode"
-          class="primary-button"
-          style="margin-top: 2rem"
+          class="primary-button "
+          style="margin-top:2rem"
         >
           Connect
         </button>
@@ -61,29 +60,26 @@
   </div>
 </template>
 <script setup>
-  import {ref, inject} from "vue";
-  import axios from "axios";
+  import {ref, inject} from "vue"
+  import axios from "axios"
   import ResendCode from "./ResendCode.vue";
 
-  const codeArr = ref(new Array(6));
-  const step = inject("current_step");
+  const codeArr = ref(new Array(6))
+  const step = inject("current_step")
+  const userId = inject("user_id")
 
-  const err = ref(false);
+  const err = ref(false)
   const generateCode = async () => {
     await axios
-      .post(
-        "http://localhost:8080/api/send-email",
-        {email: "jkljdddd@jklkjl.sk"},
-        {withCredentials: true},
-      )
+      .post("http://localhost:8080/api/send-email", {email: "jkljdddd@jklkjl.sk"}, {withCredentials: true})
       .then((res) => {
         //NOTE: server just print in console
         if (res.status == 200) {
-          step.value += 1;
+          step.value += 1
         }
       })
       .catch(async (e) => {
-        err.value = true;
+        err.value = true
         return e;
       });
   };
@@ -92,11 +88,11 @@
     const val = e.target.value;
 
     if (!/^\d*$/.test(val)) {
-      e.target.value = "";
+      e.target.value = '';
       return;
     }
 
-    codeArr.value[e.srcElement.dataset["index"]] = val;
+    codeArr.value[e.srcElement.dataset["index"]] = val
 
     if (val && e.target.nextElementSibling) {
       e.target.nextElementSibling.focus();
@@ -104,7 +100,7 @@
   };
 
   const handleCodeInputKeydown = (e) => {
-    if (e.key === "Backspace") {
+    if (e.key === 'Backspace') {
       if (!e.target.value && e.target.previousElementSibling) {
         e.target.previousElementSibling.focus();
       }
@@ -112,33 +108,30 @@
   };
 
   //TODO:?paste
-  const success = ref(false);
-  const userId = inject("user_id");
+  const success = ref(false)
+
   const verify = async () => {
-    const clientCode = codeArr.value.join("");
+    const clientCode = codeArr.value.join("")
     if (clientCode.length != 6) {
-      alert("bad code");
-      return false;
+      alert("bad code")
+      return false
     }
 
     await axios
-      .post(
-        "http://localhost:8080/api/validate-email",
-        {email: "jkljdddd@jklkjl.sk", code: clientCode},
-        {withCredentials: true},
-      )
+      .post("http://localhost:8080/api/validate-email", {email: "jkljdddd@jklkjl.sk", code: clientCode}, {withCredentials: true})
       .then((res) => {
-        success.value = true;
+        success.value = true
         userId.value = res.data.user_id;
-        step.value += 1;
+        step.value += 1
       })
       .catch(async (e) => {
-        err.value = true;
+        err.value = true
         return e;
       });
-  };
-</script>
 
+  }
+
+</script>
 <style lang="css">
   .verification-container {
     background: rgba(255, 255, 255, 0.95);
@@ -169,7 +162,7 @@
     margin-bottom: 3.5rem;
     width: 100%;
     border: 2px solid #e2e8f0;
-    border-radius: var(--border-radius);
+    border-radius: 8px;
     font-size: 2.8rem;
     font-weight: 600;
     text-align: center;

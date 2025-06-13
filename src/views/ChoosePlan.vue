@@ -142,7 +142,7 @@
     gap: 3rem;
 
 
-    @media(min-width:900px) {
+    @media(min-width:1100px) {
       flex-direction: row;
       padding: 2rem 1rem;
     }
@@ -166,15 +166,10 @@
   .choose-view {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
+    min-height: 100vh;
+    padding-top: 8rem;
 
-    padding: 3rem 0;
-
-    padding-top: 7rem;
-
-    @media (min-width:700px) {
-      padding-top: 8rem;
-    }
   }
 </style>

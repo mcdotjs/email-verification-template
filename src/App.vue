@@ -1,19 +1,21 @@
 <template>
-  <MainBackground />
-  <UpperLeftButtons />
-  <div
-    v-if="currentStep ==1 || currentStep == 2"
-    class="main-grid-container"
-  >
-    <ConnectAndVerify />
-  </div>
+  <div style="width: 100%;min-height: 100vh;position: relative;">
+    <MainBackground />
+    <UpperLeftButtons />
+    <div
+      v-if="currentStep ==1 || currentStep == 2"
+      class="main-grid-container"
+    >
+      <ConnectAndVerify />
+    </div>
 
-  <div v-else-if="currentStep == 3">
-    <ChoosePlan />
-  </div>
+    <div v-else-if="currentStep == 3">
+      <ChoosePlan />
+    </div>
 
-  <div v-else>
-    <SuccessPage />
+    <div v-else>
+      <SuccessPage />
+    </div>
   </div>
 </template>
 
