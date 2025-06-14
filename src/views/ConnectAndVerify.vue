@@ -8,7 +8,7 @@
   <TermOfService />
 </template>
 <script setup>
-  import {inject} from "vue";
-  const currentStep = inject("current_step")
-  const texts = inject("texts")
+import { inject } from "vue";
+const currentStep = inject("current_step");
+const texts = inject("texts");
 </script>

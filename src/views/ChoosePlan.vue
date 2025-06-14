@@ -30,6 +30,9 @@
         class="secondary-button "
       >Start my free trial</button>
     </div>
+    <div class="links">
+
+    </div>
   </div>
 </template>
 <script setup>
@@ -143,6 +146,7 @@
     @media(min-width:1100px) {
       flex-direction: row;
       padding: 2rem 1rem;
+      padding-top:1rem;
     }
   }
 

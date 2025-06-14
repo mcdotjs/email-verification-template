@@ -14,9 +14,10 @@
 
 <style lang="css">
   .resend-item {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     height: 66px;
     padding: 1rem;
+    margin-bottom:3rem;
     max-width: 580px;
     margin: 0 auto;
     text-align: center;
@@ -26,6 +27,10 @@
       color: var(--info);
       text-decoration: none;
       cursor: pointer;
+    }
+    @media(min-width:600px){
+
+    font-size: 1.3rem;
     }
   }
 </style>

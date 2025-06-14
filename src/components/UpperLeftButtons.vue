@@ -12,7 +12,7 @@
 
     <img
       v-show="step == 3"
-      @click="step = 2"
+      @click="step = 1"
       alt="Back icon"
       class="back-icon-button"
       src="../assets/arrow-back.svg"
