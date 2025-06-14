@@ -75,7 +75,7 @@
     const temp = {}
     const currencyMarks = {
       "USD": "$",
-      "EUR": "ec"
+      "EUR": "€"
     }
     const durationMap = {
       "monthly": "month",
@@ -122,12 +122,10 @@
       )
       .then((res) => {
         if (res.status == 200) {
-          console.log(res)
           step.value += 1;
         }
       })
       .catch(async (e) => {
-        err.value = true;
         return e;
       });
   }
@@ -139,7 +137,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 3rem;
+    gap: 4rem;
 
 
     @media(min-width:1100px) {
@@ -151,7 +149,7 @@
   .cancel-p {
     padding-top: 2rem;
     padding-bottom: 1rem;
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: 300;
     font-family: "Roboto";
     text-align: center;
@@ -160,7 +158,6 @@
       flex-direction: row;
       padding-top: 0rem;
     }
-
   }
 
   .choose-view {
@@ -168,8 +165,8 @@
     flex-direction: column;
     justify-content: start;
     align-items: center;
+    row-gap: 3rem;
     min-height: 100vh;
     padding-top: 8rem;
-
   }
 </style>

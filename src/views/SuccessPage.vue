@@ -11,16 +11,15 @@
           alt="Success image"
           class="success-image"
           src="../assets/success.png"
-        >
+        />
       </div>
     </div>
   </div>
-
 </template>
 <script setup>
-  import {inject} from 'vue';
-  const texts = inject("texts")
-  const step = inject("current_step")
+  import {inject} from "vue";
+  const texts = inject("texts");
+  const step = inject("current_step");
 </script>
 <style lang="css">
   .success-view {
@@ -31,23 +30,34 @@
     }
   }
 
-
   .success-image-wrapper {
     & img {
+      padding-top: 1rem;
       margin: 1rem auto;
     }
   }
 
   .success-page-content {
-    padding-top: 3rem;
+    padding-top: 8rem;
 
     & .heading {
       font-size: 3rem;
 
-      @media(min-width:600px) {
-
+      @media (min-width: 600px) {
         font-size: 4rem;
       }
     }
+
+    & .subheading {
+
+      @media (min-width: 600px) {
+        font-size: 1.7rem;
+        font-family: "Roboto";
+        font-weight: 300;
+        padding-top: 0.3rem;
+      }
+    }
+
   }
-</style>"
+</style>
+"

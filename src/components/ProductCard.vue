@@ -1,18 +1,17 @@
 <template>
-  <div
-    class="pricing-card"
-    :class="{ 'best-val-border': best }"
-  >
+  <div class="pricing-card">
     <div
       class="save-badge"
       v-if="best"
     >Save 20%</div>
 
+    <div :class="{ 'best-val-border': best }"></div>
     <div
       class="card-content"
       :class="{ 'cursor-pointer': !selected }"
       @click="$emit('clicked', per)"
     >
+
       <div class="best-value-container">
         <div
           v-if="selected"
@@ -47,8 +46,18 @@
 </template>
 <script setup>
   import {defineEmits} from 'vue';
-  const props = defineProps(["selected", "currency", "price", "time", "title", "billed", "trial", "best", "per"]);
-  const emits = defineEmits("clicked")
+  const props = defineProps([
+    "selected",
+    "currency",
+    "price",
+    "time",
+    "title",
+    "billed",
+    "trial",
+    "best",
+    "per"
+  ]);
+  defineEmits(["clicked"])
 </script>
 <style lang="css">
   .pricing-card {
@@ -68,21 +77,28 @@
 
   }
 
+
   .best-val-border {
-    border: 2px solid;
-    border-image: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1) 1;
+    position: absolute;
+    top: -1.5%;
+    left: -.8%;
+    width: 101.6%;
+    height: 103%;
+    background: linear-gradient(135deg, #ff9a56, #ffad56, #4ecdc4, #45b7d1);
+    border-radius: 12px;
+    z-index: -1;
   }
 
   .save-badge {
     position: absolute;
-    top: -28px;
+    top: -33px;
     right: 10px;
-    background: linear-gradient(135deg, #4ecdc4, #44a08d);
+    background: rgba(65, 181, 221, 255);
     color: #1a1a2e;
     padding: 3px 16px;
     border-radius: 12px 12px 0px 0px;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 1.2rem;
     box-shadow: 0 4px 12px rgba(78, 205, 196, 0.3);
   }
 
@@ -113,14 +129,21 @@
   }
 
   .pricing-info {
+    position: relative;
+    z-index: 88;
+    background-color: rgba(61, 51, 105, 255);
     grid-column: 2;
     grid-row: 1 / span 5;
     display: flex;
     flex-direction: column;
     justify-content: center;
     color: rgba(255, 255, 255, 0.7);
-    background-color: rgba(0, 0, 0, 0.4);
     text-align: right;
+    border-top-right-radius: 12px;
+
+    @media(min-width:1100px) {
+      border-top-right-radius: 0px;
+    }
   }
 
   .price {
@@ -161,11 +184,12 @@
   }
 
   .trial-badge {
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(41, 30, 61, 255);
     color: #ffd700;
     font-weight: 600;
     font-size: 16px;
     display: flex;
+    border-bottom-right-radius: 12px;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -178,6 +202,7 @@
       padding: 1rem;
       font-size: 1.5rem;
       text-align: center;
+      border-bottom-left-radius: 12px;
     }
   }
 
@@ -205,16 +230,21 @@
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    margin-top: 4rem;
-
+    padding-top: 1rem;
+    background: rgba(91, 70, 144, 255);
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
     grid-column: 1;
-    grid-row: 2;
+    grid-row: 1 / span 7;
 
     @media(min-width:1100px) {
       font-size: 1.3rem;
       gap: 0;
       margin: 0;
+      padding-top: 0;
       position: relative;
+      border-bottom-left-radius: 0px;
+      border-top-right-radius: 12px;
     }
   }
 

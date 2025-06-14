@@ -27,6 +27,8 @@ const currentStep = ref(1);
 app.provide("current_step", currentStep);
 
 const userId = ref(null);
+const userEmail = ref(null);
 app.provide("user_id", userId);
+app.provide("user_email", userEmail);
 
 app.mount('#app')

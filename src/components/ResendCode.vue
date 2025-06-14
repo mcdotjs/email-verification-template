@@ -1,8 +1,17 @@
 <template>
   <div class="resend-item">
-    Didn't get an email? <a href="#">Resend Code</a>.
+    Didn't get an email? <span @click="handleResend">Resend Code</span>.
   </div>
 </template>
+
+<script setup>
+  const emit = defineEmits(['resend'])
+
+  const handleResend = () => {
+    emit('resend')
+  }
+</script>
+
 <style lang="css">
   .resend-item {
     font-size: 1.3rem;
@@ -13,10 +22,10 @@
     text-align: center;
     color: var(--text-primary);
 
-    a {
+    span {
       color: var(--info);
       text-decoration: none;
+      cursor: pointer;
     }
-
   }
 </style>
