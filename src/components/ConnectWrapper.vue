@@ -1,21 +1,21 @@
 <template>
-  <div>
+  <div class="">
     <div class="small-container">
       <div v-if="step == 1">
-        <div>
-          <input
-            type="email"
-            class="input-field"
-            placeholder="Email Address"
-          />
-        </div>
+        <input
+          v-model="userEmail"
+          type="email"
+          class="input-field"
+          placeholder="Email Address"
+        />
       </div>
+
       <div v-if="step == 2">
         <div class="code-input-container">
           <input
-            v-for="(num,idx) in codeArr"
+            v-for="(num, idx) in codeArr"
             :data-index="idx"
-            :id="'code'+idx"
+            :id="'code' + idx"
             type="text"
             :value="num"
             class="code-input"
@@ -23,12 +23,10 @@
             placeholder=""
             @input="handleCodeInput"
             @keydown="handleCodeInputKeydown"
-            style="
-            "
-          >
+            @focus="errorMessage = null"
+          />
         </div>
       </div>
-
       <div
         v-if="step == 1"
         class="offer-checkbox"
@@ -41,45 +39,66 @@
         <label for="check">Send Me Offers, News, and Fun Stuff!</label>
         <button
           @click="generateCode"
-          class="primary-button "
-          style="margin-top:2rem"
+          class="primary-button"
+          style="margin-top: 2rem"
         >
           Connect
         </button>
       </div>
-
       <div v-if="step == 2">
-        <ResendCode />
-
+        <ResendCode @resend="generateCode" />
         <button
           @click="verify"
           class="primary-button"
-        >Verify</button>
+        >
+          Verify
+        </button>
       </div>
+    </div>
+    <div
+      v-if="errorMessage"
+      class="error-message-slide"
+    >
+      {{ errorMessage }}
+      <span v-show="remainingTime != 30">({{ remainingTime }})</span>
     </div>
   </div>
 </template>
 <script setup>
-  import {ref, inject} from "vue"
-  import axios from "axios"
+  import {ref, inject, watch} from "vue";
+  import axios from "axios";
   import ResendCode from "./ResendCode.vue";
 
-  const codeArr = ref(new Array(6))
-  const step = inject("current_step")
-  const userId = inject("user_id")
+  const codeArr = ref(new Array(6));
+  const step = inject("current_step");
+  const userId = inject("user_id");
+  const userEmail = inject("user_email");
+  const errorMessage = ref(null);
+  const remainingTime = ref(30);
+  const timerId = ref(-1);
 
-  const err = ref(false)
   const generateCode = async () => {
+    if (remainingTime.value != 30) {
+      console.log("wait!!!");
+      return;
+    }
     await axios
-      .post("http://localhost:8080/api/send-email", {email: "jkljdddd@jklkjl.sk"}, {withCredentials: true})
+      .post(
+        "http://localhost:8080/api/send-email",
+        {email: userEmail.value},
+        {withCredentials: true},
+      )
       .then((res) => {
         //NOTE: server just print in console
         if (res.status == 200) {
-          step.value += 1
+          step.value = 2;
         }
       })
       .catch(async (e) => {
-        err.value = true
+        errorMessage.value = e.response.data.error;
+        if (e.status == 429) {
+          timerId.value = timer(remainingTime);
+        }
         return e;
       });
   };
@@ -88,11 +107,11 @@
     const val = e.target.value;
 
     if (!/^\d*$/.test(val)) {
-      e.target.value = '';
+      e.target.value = "";
       return;
     }
 
-    codeArr.value[e.srcElement.dataset["index"]] = val
+    codeArr.value[e.srcElement.dataset["index"]] = val;
 
     if (val && e.target.nextElementSibling) {
       e.target.nextElementSibling.focus();
@@ -100,36 +119,62 @@
   };
 
   const handleCodeInputKeydown = (e) => {
-    if (e.key === 'Backspace') {
+    if (e.key === "Backspace") {
       if (!e.target.value && e.target.previousElementSibling) {
         e.target.previousElementSibling.focus();
       }
     }
   };
 
-  //TODO:?paste
-  const success = ref(false)
-
   const verify = async () => {
-    const clientCode = codeArr.value.join("")
+    const clientCode = codeArr.value.join("");
     if (clientCode.length != 6) {
-      alert("bad code")
-      return false
+      errorMessage.value = "Code must be filled";
+      return;
     }
-
     await axios
-      .post("http://localhost:8080/api/validate-email", {email: "jkljdddd@jklkjl.sk", code: clientCode}, {withCredentials: true})
+      .post(
+        "http://localhost:8080/api/validate-email",
+        {email: userEmail.value, code: clientCode},
+        {withCredentials: true},
+      )
       .then((res) => {
-        success.value = true
         userId.value = res.data.user_id;
-        step.value += 1
+        step.value = 3;
       })
       .catch(async (e) => {
-        err.value = true
+        errorMessage.value = e.response?.data?.error;
         return e;
       });
+  };
 
-  }
+  const timer = (remainingTimeRef) => {
+    const intervalId = setInterval(() => {
+      if (remainingTimeRef.value > 0) {
+        remainingTimeRef.value -= 1;
+        console.log("este", remainingTimeRef.value);
+      } else {
+        console.log("clear timer");
+        remainingTime.value = 30;
+        errorMessage.value = null;
+        clearInterval(intervalId);
+      }
+    }, 1000);
+
+    return intervalId;
+  };
+
+  //NOTE: modifing email, after resending code 
+  watch(step, (n, o) => {
+    console.log(n, o, userEmail.value);
+    //NOTE: going back
+    if (o == 2 && n == 1 && userEmail.value) {
+      console.log("ideme back a clearujeme")
+      remainingTime.value = 30;
+      errorMessage.value = null;
+      clearInterval(timerId.value);
+    }
+  });
 
 </script>
 <style lang="css">
@@ -151,19 +196,18 @@
 
   .code-input-container {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 3rem;
-    gap: 20px;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
   }
 
   .code-input {
-    aspect-ratio: 1;
-    margin-bottom: 3.5rem;
-    width: 100%;
+    width: 50px;
+    height: 50px;
     border: 2px solid #e2e8f0;
-    border-radius: 8px;
-    font-size: 2.8rem;
+    border-radius: 12px;
+    font-size: 24px;
     font-weight: 600;
     text-align: center;
     color: #2d3748;
@@ -181,7 +225,7 @@
   .code-input:not(:placeholder-shown) {
     border-color: #48bb78;
     background: #f0fff4;
-    /* animation: pulse 0.3s ease; */
+    animation: pulse 0.3s ease;
   }
 
   @keyframes pulse {
@@ -207,6 +251,32 @@
 
     .code-input-container {
       gap: 8px;
+    }
+  }
+
+  .error-message-slide {
+    background: linear-gradient(135deg, #fee2e2, #fecaca);
+    border: 1px solid #f87171;
+    border-radius: var(--border-radius);
+    padding: 0.5rem 2rem;
+    color: #7f1d1d;
+    font-size: 1.3rem;
+    line-height: 1.5;
+    position: fixed;
+    top: 1rem;
+    right: 2rem;
+    animation: slideFromTopRight 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  @keyframes slideFromTopRight {
+    from {
+      opacity: 0;
+      transform: translate(200px, 0px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translate(0, 0);
     }
   }
 </style>
