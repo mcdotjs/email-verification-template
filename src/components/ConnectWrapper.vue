@@ -87,7 +87,7 @@ const generateCode = async () => {
   }
   await axios
     .post(
-      "http://localhost:8080/api/send-email",
+      "/api/send-email",
       { email: userEmail.value },
       { withCredentials: true },
     )
@@ -137,7 +137,7 @@ const verify = async () => {
   }
   await axios
     .post(
-      "http://localhost:8080/api/validate-email",
+      "/api/validate-email",
       { email: userEmail.value, code: clientCode },
       { withCredentials: true },
     )

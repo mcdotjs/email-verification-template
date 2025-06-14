@@ -53,7 +53,7 @@
   const getProducts = async () => {
     let products = null;
     await axios
-      .get("http://localhost:8080/api/products")
+      .get("/api/products")
       .then((res) => {
         products = res.data;
       })
@@ -119,7 +119,7 @@
   const startTrial = async () => {
     await axios
       .post(
-        "http://localhost:8080/api/start-trial",
+        "/api/start-trial",
         {user_id: userId.value},
         {withCredentials: true},
       )
