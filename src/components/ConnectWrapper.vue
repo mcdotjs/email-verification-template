@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 100%; padding-top: 4rem">
+  <div class="step2-wrapper">
     <div class="small-container">
       <div v-if="step == 1">
         <input
@@ -17,9 +17,10 @@
             v-for="(num, idx) in codeArr"
             :data-index="idx"
             :id="'code' + idx"
-            type="number"
+            type="text"
             :value="num"
             class="code-input"
+            inputmode="numeric"
             maxlength="1"
             pattern="[0-9]"
             @input="handleCodeInput"
@@ -208,5 +209,10 @@
   .email {
     color: #4299e1;
     font-weight: 600;
+  }
+
+  .step2-wrapper {
+    height: 100%;
+    padding-top: 4rem;
   }
 </style>
