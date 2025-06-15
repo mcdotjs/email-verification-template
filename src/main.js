@@ -12,7 +12,7 @@ import UpperLeftButtons from "./components/UpperLeftButtons.vue";
 import SuccessConfetti from "./components/SuccessConfetti.vue";
 
 const app = createApp(App);
-const apiUrl = import.meta.env.VITE_API_URL;
+const apiUrl = import.meta.env.VITE_API_URL ?? "";
 
 app.component("MainHeader", MainHeader);
 app.component("MainBackground", MainBackground);
