@@ -22,7 +22,6 @@
             class="code-input"
             inputmode="numeric"
             maxlength="1"
-            pattern="[0-9]"
             @input="handleCodeInput"
             @keydown="handleCodeInputKeydown"
             @focus="errorMessage = null"
