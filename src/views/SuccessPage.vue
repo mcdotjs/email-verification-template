@@ -17,7 +17,7 @@
   </div>
 </template>
 <script setup>
-  import {inject} from "vue";
+  import { inject } from "vue";
   const texts = inject("texts");
   const step = inject("current_step");
 </script>
@@ -49,7 +49,6 @@
     }
 
     & .subheading {
-
       @media (min-width: 600px) {
         font-size: 1.7rem;
         font-family: "Roboto";
@@ -57,7 +56,6 @@
         padding-top: 0.3rem;
       }
     }
-
   }
 </style>
 "

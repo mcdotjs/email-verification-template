@@ -10,7 +10,7 @@
           v-for="(p, i) in products"
           @clicked="selectedProduct"
           :key="i"
-          :best="p.duration == 'year'?true: false"
+          :best="p.duration == 'year' ? true : false"
           :time="p.billed"
           :currency="p.currency_mark"
           :price="p.price"
@@ -21,30 +21,29 @@
           :selected="p.duration == computedSelected"
         />
       </div>
-      <p class="cancel-p">
-        Cancel anytime
-      </p>
+      <p class="cancel-p">Cancel anytime</p>
 
       <button
         @click="startTrial"
-        class="secondary-button "
-      >Start my free trial</button>
+        class="secondary-button"
+      >
+        Start my free trial
+      </button>
     </div>
-    <div class="links">
-
-    </div>
+    <div class="links"></div>
   </div>
 </template>
 <script setup>
   import axios from "axios";
-  import {ref, onBeforeMount, inject, computed} from "vue";
+  import { ref, onBeforeMount, inject, computed } from "vue";
   import ProductCard from "../components/ProductCard.vue";
 
-  const step = inject("current_step")
-  const texts = inject("texts")
-  const userId = inject("user_id")
+  const apiUrl = inject("api_url");
+  const step = inject("current_step");
+  const texts = inject("texts");
+  const userId = inject("user_id");
 
-  const products = ref(null)
+  const products = ref(null);
 
   onBeforeMount(async () => {
     products.value = await getProducts();
@@ -53,75 +52,74 @@
   const getProducts = async () => {
     let products = null;
     await axios
-      .get("/api/products")
+      .get(apiUrl + "/api/products")
       .then((res) => {
         products = res.data;
       })
       .catch(async (error) => {
         return error;
       });
-    const newProducts = {}
+    const newProducts = {};
     const durationMap = {
-      "monthly": "month",
-      "year": "year"
-    }
+      monthly: "month",
+      year: "year",
+    };
 
     for (const p in products) {
-      const newP = augmentProduct(products[p], p)
-      newProducts[durationMap[p]] = newP
+      const newP = augmentProduct(products[p], p);
+      newProducts[durationMap[p]] = newP;
     }
-    return newProducts
+    return newProducts;
   };
-
 
   const augmentProduct = (p, key) => {
-    const temp = {}
+    const temp = {};
     const currencyMarks = {
-      "USD": "$",
-      "EUR": "€"
-    }
+      USD: "$",
+      EUR: "€",
+    };
     const durationMap = {
-      "monthly": "month",
-      "year": "year"
-    }
+      monthly: "month",
+      year: "year",
+    };
 
     const billedMap = {
-      "monthly": "monthly",
-      "year": "annually"
-    }
+      monthly: "monthly",
+      year: "annually",
+    };
     const titleMap = {
-      "monthly": "monthly",
-      "year": "annuall"
-    }
+      monthly: "monthly",
+      year: "annuall",
+    };
 
     for (const field in p) {
-      temp[field] = p[field]
+      temp[field] = p[field];
       if (field == "currency") {
-        temp["currency_mark"] = currencyMarks[p[field]]
+        temp["currency_mark"] = currencyMarks[p[field]];
       }
-      temp["duration"] = durationMap[key]
-      temp["billed"] = billedMap[key]
-      temp["title"] = titleMap[key]
-      temp["selected"] = true
+      temp["duration"] = durationMap[key];
+      temp["billed"] = billedMap[key];
+      temp["title"] = titleMap[key];
+      temp["selected"] = true;
     }
-    return temp
-  }
-
-  const myProduct = ref("year")
-
-  const selectedProduct = (e) => {
-    const r = Object.keys(products.value).find(i => e == i)
-    myProduct.value = r
+    return temp;
   };
 
-  const computedSelected = computed(() => myProduct.value)
+  const myProduct = ref("year");
+
+  const selectedProduct = (e) => {
+    const r = Object.keys(products.value).find((i) => e == i);
+    myProduct.value = r;
+  };
+
+  const computedSelected = computed(() => myProduct.value);
 
   const startTrial = async () => {
     await axios
       .post(
-        "/api/start-trial",
-        {user_id: userId.value},
-        {withCredentials: true},
+        apiUrl + "/api/start-trial",
+        { user_id: userId.value },
+        { withCredentials: true },
       )
       .then((res) => {
         if (res.status == 200) {
@@ -131,7 +129,7 @@
       .catch(async (e) => {
         return e;
       });
-  }
+  };
 </script>
 
 <style lang="css">
@@ -142,11 +140,10 @@
     align-items: center;
     gap: 4rem;
 
-
-    @media(min-width:1100px) {
+    @media (min-width: 1100px) {
       flex-direction: row;
       padding: 2rem 1rem;
-      padding-top:1rem;
+      padding-top: 1rem;
     }
   }
 
@@ -158,7 +155,7 @@
     font-family: "Roboto";
     text-align: center;
 
-    @media(min-width:900px) {
+    @media (min-width: 900px) {
       flex-direction: row;
       padding-top: 0rem;
     }

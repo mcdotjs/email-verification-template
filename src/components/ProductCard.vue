@@ -3,7 +3,9 @@
     <div
       class="save-badge"
       v-if="best"
-    >Save 20%</div>
+    >
+      Save 20%
+    </div>
 
     <div :class="{ 'best-val-border': best }"></div>
     <div
@@ -11,7 +13,6 @@
       :class="{ 'cursor-pointer': !selected }"
       @click="$emit('clicked', per)"
     >
-
       <div class="best-value-container">
         <div
           v-if="selected"
@@ -25,27 +26,33 @@
           <span
             v-if="best"
             class="best-value-text"
-          >Best Value</span>
+          >
+            Best Value
+          </span>
           <h2 class="plan-title">{{ title }}</h2>
         </div>
       </div>
 
       <div class="pricing-info">
         <div class="price">
-          {{ currency }}{{price}}<span
+          {{ currency }}{{ price }}
+          <span
             class="time"
             style=""
-          >/{{ per }}</span>
+          >
+            /{{ per }}
+          </span>
         </div>
-        <p class="billing-period">Billed {{billed}}</p>
+        <p class="billing-period">Billed {{ billed }}</p>
       </div>
 
-      <div class="trial-badge">{{trial}}-day free trial</div>
+      <div class="trial-badge">{{ trial }}-day free trial</div>
     </div>
   </div>
 </template>
+
 <script setup>
-  import {defineEmits} from 'vue';
+  import { defineEmits } from "vue";
   const props = defineProps([
     "selected",
     "currency",
@@ -55,33 +62,38 @@
     "billed",
     "trial",
     "best",
-    "per"
+    "per",
   ]);
-  defineEmits(["clicked"])
+  defineEmits(["clicked"]);
 </script>
+
 <style lang="css">
   .pricing-card {
     position: relative;
     min-width: 330px;
     width: 100%;
-    background: linear-gradient(135deg,
-        rgba(139, 69, 199, 0.3) 0%,
-        rgba(75, 0, 130, 0.2) 100%);
+    background: linear-gradient(
+      135deg,
+      rgba(139, 69, 199, 0.3) 0%,
+      rgba(75, 0, 130, 0.2) 100%
+    );
     backdrop-filter: blur(20px);
     transition: all 0.3s ease;
     border-radius: 12px;
-
-    @media(min-width:520px) {
+    user-select: none;
+    @media (min-width: 520px) {
       min-width: 500px;
     }
-
   }
 
+  .pricing-card:hover {
+    transform: translateY(-2px);
+  }
 
   .best-val-border {
     position: absolute;
     top: -1.5%;
-    left: -.8%;
+    left: -0.8%;
     width: 101.6%;
     height: 103%;
     background: linear-gradient(135deg, #ff9a56, #ffad56, #4ecdc4, #45b7d1);
@@ -109,7 +121,7 @@
     text-transform: uppercase;
     letter-spacing: 1px;
 
-    @media(min-width:1100px) {
+    @media (min-width: 1100px) {
       display: none;
     }
   }
@@ -121,7 +133,7 @@
     margin: 0 0 24px 0;
     text-transform: capitalize;
 
-    @media(min-width:1100px) {
+    @media (min-width: 1100px) {
       font-size: 2.3rem;
       margin: 0;
       padding: 1rem;
@@ -141,7 +153,7 @@
     text-align: right;
     border-top-right-radius: 12px;
 
-    @media(min-width:1100px) {
+    @media (min-width: 1100px) {
       border-top-right-radius: 0px;
     }
   }
@@ -153,7 +165,7 @@
     text-align: center;
     margin: 0;
 
-    @media(min-width:1100px) {
+    @media (min-width: 1100px) {
       font-size: 2.8rem;
       padding-top: 0.8rem;
     }
@@ -164,7 +176,7 @@
     font-weight: 400;
     color: rgba(255, 255, 255, 0.7);
 
-    @media(min-width:1100px) {
+    @media (min-width: 1100px) {
       font-size: 2rem;
     }
   }
@@ -176,7 +188,7 @@
     text-align: center;
     margin: 0px auto;
 
-    @media(min-width:1100px) {
+    @media (min-width: 1100px) {
       font-size: 1.3rem;
       text-align: center;
       padding-bottom: 1.2rem;
@@ -197,7 +209,7 @@
     grid-column: 2;
     grid-row: 6 / span 2;
 
-    @media(min-width:1100px) {
+    @media (min-width: 1100px) {
       display: block;
       padding: 1rem;
       font-size: 1.5rem;
@@ -213,10 +225,9 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(7, 20px);
 
-    @media (min-width:1100px) {
+    @media (min-width: 1100px) {
       display: block;
     }
-
   }
 
   .pricing-card::before {
@@ -237,7 +248,7 @@
     grid-column: 1;
     grid-row: 1 / span 7;
 
-    @media(min-width:1100px) {
+    @media (min-width: 1100px) {
       font-size: 1.3rem;
       gap: 0;
       margin: 0;
@@ -261,7 +272,7 @@
     margin-top: -1.4rem;
     cursor: pointer;
 
-    @media(min-width:1100px) {
+    @media (min-width: 1100px) {
       width: 34px;
       height: 34px;
 
@@ -282,7 +293,7 @@
     justify-content: center;
     margin-top: -1.4rem;
 
-    @media(min-width:1100px) {
+    @media (min-width: 1100px) {
       width: 34px;
       height: 34px;
 

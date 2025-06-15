@@ -1,9 +1,9 @@
 <template>
-  <div style="width: 100%;min-height: 100vh;position: relative;">
+  <div class="main-wrapper">
     <MainBackground />
     <UpperLeftButtons />
     <div
-      v-if="currentStep ==1 || currentStep == 2"
+      v-if="currentStep == 1 || currentStep == 2"
       class="main-grid-container"
     >
       <ConnectAndVerify />
@@ -23,6 +23,6 @@
   import ChoosePlan from "./views/ChoosePlan.vue";
   import ConnectAndVerify from "./views/ConnectAndVerify.vue";
   import SuccessPage from "./views/SuccessPage.vue";
-  import {inject} from "vue";
-  const currentStep = inject("current_step")
+  import { inject } from "vue";
+  const currentStep = inject("current_step");
 </script>

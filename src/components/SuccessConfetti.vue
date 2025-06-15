@@ -9,21 +9,22 @@
 
 <script setup>
   //vanilla source https://github.com/CogniSolver/confetti-animation
-  import {onMounted, ref} from 'vue';
+  import { onMounted, ref } from "vue";
   let confetti = [];
   const confettiCount = 300;
   const gravity = 0.5;
   const terminalVelocity = 5;
   const drag = 0.075;
   const colors = [
-    {front: 'red', back: 'darkred'},
-    {front: 'green', back: 'darkgreen'},
-    {front: 'blue', back: 'darkblue'},
-    {front: 'yellow', back: 'darkyellow'},
-    {front: 'orange', back: 'darkorange'},
-    {front: 'pink', back: 'darkpink'},
-    {front: 'purple', back: 'darkpurple'},
-    {front: 'turquoise', back: 'darkturquoise'}];
+    { front: "red", back: "darkred" },
+    { front: "green", back: "darkgreen" },
+    { front: "blue", back: "darkblue" },
+    { front: "yellow", back: "darkyellow" },
+    { front: "orange", back: "darkorange" },
+    { front: "pink", back: "darkpink" },
+    { front: "purple", back: "darkpurple" },
+    { front: "turquoise", back: "darkturquoise" },
+  ];
   const ctx = ref(null);
 
   const randomRange = (min, max) => Math.random() * (max - min) + min;
@@ -34,30 +35,30 @@
         color: colors[Math.floor(randomRange(0, colors.length))],
         dimensions: {
           x: randomRange(10, 20),
-          y: randomRange(10, 30)
+          y: randomRange(10, 30),
         },
 
         position: {
           x: randomRange(0, window.innerWidth),
-          y: window.innerHeight - 1
+          y: window.innerHeight - 1,
         },
 
         rotation: randomRange(0, 2 * Math.PI),
         scale: {
           x: 1,
-          y: 1
+          y: 1,
         },
 
         velocity: {
           x: randomRange(-25, 25),
-          y: randomRange(0, -50)
-        }
+          y: randomRange(0, -50),
+        },
       });
     }
   };
 
   const render = () => {
-    const c = ctx.value
+    const c = ctx.value;
     c.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
     confetti.forEach((confetto, index) => {
@@ -70,8 +71,12 @@
 
       // Apply forces to velocity
       confetto.velocity.x -= confetto.velocity.x * drag;
-      confetto.velocity.y = Math.min(confetto.velocity.y + gravity, terminalVelocity);
-      confetto.velocity.x += Math.random() > 0.5 ? Math.random() : -Math.random();
+      confetto.velocity.y = Math.min(
+        confetto.velocity.y + gravity,
+        terminalVelocity,
+      );
+      confetto.velocity.x +=
+        Math.random() > 0.5 ? Math.random() : -Math.random();
 
       confetto.position.x += confetto.velocity.x;
       confetto.position.y += confetto.velocity.y;
@@ -85,7 +90,8 @@
 
       // Spin confetto by scaling y
       confetto.scale.y = Math.cos(confetto.position.y * 0.1);
-      c.fillStyle = confetto.scale.y > 0 ? confetto.color.front : confetto.color.back;
+      c.fillStyle =
+        confetto.scale.y > 0 ? confetto.color.front : confetto.color.back;
 
       // Draw confetti
       c.fillRect(-width / 2, -height / 2, width, height);
@@ -93,7 +99,6 @@
       // Reset transform matrix
       c.setTransform(1, 0, 0, 1, 0, 0);
     });
-
 
     window.requestAnimationFrame(render);
   };
@@ -106,17 +111,16 @@
     const cx = ctx.value.canvas.width / 2;
     const cy = ctx.value.canvas.height / 2;
 
-    window.addEventListener('resize', function () {
+    window.addEventListener("resize", function () {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       cx = ctx.canvas.width / 2;
       cy = ctx.canvas.height / 2;
     });
 
-    render()
-    initConfetti()
-  })
-
+    render();
+    initConfetti();
+  });
 </script>
 
 <style lang="css">

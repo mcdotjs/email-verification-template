@@ -1,7 +1,10 @@
 <template>
   <div class="terms-item">
-    By continuing, you agree to our <a href="#">Temrs of Service</a> and
-    <a href="">Privacy Policy</a>.
+    By continuing, you agree to our
+    <a href="#">Terms of Service</a>
+    and
+    <a href="#">Privacy Policy</a>
+    .
   </div>
 </template>
 <style lang="css">
@@ -17,6 +20,5 @@
       color: var(--info);
       text-decoration: none;
     }
-
   }
 </style>

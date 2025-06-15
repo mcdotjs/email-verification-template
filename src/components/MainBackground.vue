@@ -2,8 +2,9 @@
   <div class="bg-wrapper">
     <div class="background-container">
       <div class="blur-circle blue-circle pink"></div>
-      <div class="blur-circle purple-circle yellowball"></div>
-      <div class="blur-circle pink-circle animate-slow-pulse animate-drift-up greenball"></div>
+      <div
+        class="blur-circle pink-circle animate-slow-pulse animate-drift-up greenball"
+      ></div>
     </div>
   </div>
 </template>
@@ -16,6 +17,7 @@
     width: 100%;
     height: 100%;
     background: #2d234b;
+    /* background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 50%, #0891b2 100%); */
     overflow: hidden;
   }
 
@@ -37,15 +39,9 @@
 
   .blue-circle {
     background-color: #3b82f6;
-    top: 600px;
-    left: 176px;
-  }
-
-  .purple-circle {
-    background-color: #8b5cf6;
-    top: 160px;
-    right: 80px;
-    animation: slow-pulse 4s ease-in-out infinite;
+    top: 76vh;
+    left: 2vw;
+    animation: slow-pulse 10s ease-in-out infinite;
   }
 
   .pink-circle {
@@ -54,11 +50,10 @@
     left: 288px;
     animation:
       slow-pulse 4s ease-in-out infinite,
-      drift-up 6s ease-in-out infinite;
+      drift-up 18s ease-in-out infinite;
   }
 
   @keyframes slow-pulse {
-
     0%,
     100% {
       opacity: 1;
@@ -67,19 +62,18 @@
 
     50% {
       opacity: 0.7;
-      transform: scale(1.05);
+      transform: scale(1.8);
     }
   }
 
   @keyframes drift-up {
-
     0%,
     100% {
       transform: translateY(0);
     }
 
     50% {
-      transform: translateY(-20px);
+      transform: translateX(400px);
     }
   }
 </style>

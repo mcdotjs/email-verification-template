@@ -15,27 +15,23 @@
 </template>
 
 <script setup>
-import { inject } from "vue";
+  import { inject } from "vue";
 
-const props = defineProps(["header", "subheading"]);
-const step = inject("current_step");
-const userEmail = inject("user_email");
+  const props = defineProps(["header", "subheading"]);
+  const step = inject("current_step");
+  const userEmail = inject("user_email");
 </script>
 
 <style lang="css">
-.green-user-email {
-  position: absolute;
-  bottom: -2rem;
-  left: 0;
-  color: #42d392;
-  font-size: 2rem;
-  font-weight: 400;
-  text-align: center;
-  width: 100%;
+  .green-user-email {
+    position: absolute;
+    bottom: -2rem;
+    left: 0;
+    color: #42d392;
+    font-size: 2rem;
+    font-weight: 400;
+    text-align: center;
+    width: 100%;
 
-  @media (min-width: 700px) {
-    font-size: 1.6rem;
-    bottom: -1.7rem;
   }
-}
 </style>

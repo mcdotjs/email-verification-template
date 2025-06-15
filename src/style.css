@@ -2,6 +2,7 @@
 @import "./styles/buttons.css";
 @import "./styles/inputs.css";
 @import "./styles/container.css";
+@import "./styles/error_message.css";
 
 :root {
   --bg-primary: #2D1B69;
