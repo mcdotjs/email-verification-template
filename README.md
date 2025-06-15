@@ -1,10 +1,10 @@
 # SETUP
 1. you need
-node vesion 20.11.1
-npm version 10.2.4
+- node vesion 20.11.1
+- npm version 10.2.4
 
 2. create env
-VITE_API_URL=http://localhost:8080
+- VITE_API_URL=http://localhost:8080
 
 3. and run 
 - npm i
