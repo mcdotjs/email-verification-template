@@ -43,7 +43,7 @@
 </template>
 <script setup>
   import axios from "axios";
-  import { ref, onBeforeMount, inject, computed } from "vue";
+  import { ref, onBeforeMount, inject, computed, onMounted } from "vue";
   import ProductCard from "../components/ProductCard.vue";
 
   const apiUrl = inject("api_url");
@@ -55,6 +55,10 @@
 
   onBeforeMount(async () => {
     products.value = await getProducts();
+  });
+
+  onMounted(() => {
+    window.scrollTo(0, 0);
   });
 
   const getProducts = async () => {
@@ -171,10 +175,14 @@
   .choose-view {
     display: grid;
     place-items: center;
-    min-height: 100vh;
+    min-height: 900px;
     width: 100vw;
     padding-top: 3rem;
-    overflow: hidden;
+    overflow-x: hidden;
+
+    @media (min-width: 700px) {
+      width: 100wv;
+    }
   }
 
   .lins-chosse-items {
@@ -185,6 +193,7 @@
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
+    padding: 0 1rem;
     gap: 0.3rem;
     & > a:hover {
       color: var(--text-secondary);

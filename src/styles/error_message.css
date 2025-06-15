@@ -1,26 +1,37 @@
- .error-message-slide {
-   background: linear-gradient(135deg, #fee2e2, #fecaca);
-   border: 1px solid #f87171;
-   border-radius: var(--border-radius);
-   padding: 0.5rem 2rem;
-   color: #7f1d1d;
-   font-size: 1.3rem;
-   line-height: 1.5;
-   position: fixed;
-   top: 1rem;
-   right: 2rem;
-   margin-left: 2.3rem;
-   animation: slideFromTopRight 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
- }
+.error-message-slide {
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+  border: 1px solid #f87171;
+  border-radius: var(--border-radius);
+  padding: 0.5rem 2rem;
+  color: #7f1d1d;
+  font-size: 1.3rem;
+  line-height: 1.5;
+  position: fixed;
+  top: 1rem;
+  right: 2rem;
+  margin-left: 2.3rem;
+  padding-right: 3rem;
+  animation: slideFromTopRight 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
- @keyframes slideFromTopRight {
-   from {
-     opacity: 0;
-     transform: translate(200px, 0px);
-   }
+  & span.close {
+    position: absolute;
+    height: 100%;
+    width: 3rem;
+    top: 0rem;
+    right: 0rem;
+    display: grid;
+    place-items: center;
+  }
+}
 
-   to {
-     opacity: 1;
-     transform: translate(0, 0);
-   }
- }
+@keyframes slideFromTopRight {
+  from {
+    opacity: 0;
+    transform: translate(200px, 0px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}

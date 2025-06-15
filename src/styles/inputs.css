@@ -120,6 +120,7 @@ input[type="number"] {
   transition: all 0.2s ease;
   outline: none;
   caret-color: #4299e1;
+  box-sizing: content-box !important;
 
   @media (min-width: 500px) {
     width: 60px;

@@ -59,11 +59,11 @@
     </div>
     <div
       v-if="errorMessage"
-      @click="errorMessage = null"
       class="error-message-slide"
     >
       {{ errorMessage }}
       <span v-show="remainingTime != WAITING_TIME">({{ remainingTime }})</span>
+      <span class="close" @click="errorMessage = null">&#x2715;</span>
     </div>
   </div>
 </template>

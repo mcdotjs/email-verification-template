@@ -17,9 +17,13 @@
   </div>
 </template>
 <script setup>
-  import { inject } from "vue";
+  import { inject, onMounted } from "vue";
   const texts = inject("texts");
   const step = inject("current_step");
+
+  onMounted(() => {
+    window.scrollTo(0, 0);
+  });
 </script>
 <style lang="css">
   .success-view {
