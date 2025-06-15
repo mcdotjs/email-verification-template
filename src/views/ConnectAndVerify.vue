@@ -1,5 +1,4 @@
 <template>
-  test
   <MainHeader
     :header="texts.steps[currentStep].header"
     :subheading="texts.steps[currentStep]?.subheading"

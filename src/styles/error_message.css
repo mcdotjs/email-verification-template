@@ -15,6 +15,7 @@
 
   & span.close {
     position: absolute;
+    cursor: pointer;
     height: 100%;
     width: 3rem;
     top: 0rem;

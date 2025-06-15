@@ -92,7 +92,7 @@ input[type="number"] {
   align-items: center;
   justify-content: center;
 
-  @media (min-width: 400px) {
+  @media (min-width: 360px) {
     flex-wrap: nowrap;
   }
 
@@ -109,7 +109,7 @@ input[type="number"] {
 
 .code-input {
   aspect-ratio: 1 / 1;
-  width: 50px;
+  width: 40px;
   border: 2px solid #e2e8f0;
   border-radius: var(--border-radius);
   font-size: 3rem;
@@ -124,10 +124,6 @@ input[type="number"] {
 
   @media (min-width: 500px) {
     width: 60px;
-  }
-
-  @media (min-width: 600px) {
-    width: 68px;
   }
 }
 
