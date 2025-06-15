@@ -1,8 +1,7 @@
 <template>
   <div class="resend-item">
     Didn't get an email?
-    <span @click="handleResend">Resend Code</span>
-    .
+    <span @click="handleResend">Resend Code</span>.
   </div>
 </template>
 

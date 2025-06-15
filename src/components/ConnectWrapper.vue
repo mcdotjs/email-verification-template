@@ -41,6 +41,7 @@
         <button
           @click="generateCode"
           class="primary-button"
+          :disabled="verifyBtnDisabled"
         >
           Connect
         </button>

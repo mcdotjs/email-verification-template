@@ -16,8 +16,7 @@
     z-index: -1;
     width: 100%;
     height: 100%;
-    background: #2d234b;
-    /* background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 50%, #0891b2 100%); */
+    background: rgba(41,35,71,255);
     overflow: hidden;
   }
 

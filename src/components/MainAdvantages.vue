@@ -26,10 +26,14 @@
 
 <style scoped lang="css">
   .advantages-container {
-    font-size: 1.48rem;
+    font-size: 1.3rem;
     line-height: 1.75rem;
-    max-width: 550px;
     margin: 0 auto;
+
+    @media (min-width: 600px) {
+      max-width: 550px;
+      font-size: 1.48rem;
+    }
   }
 
   .advantage-item {

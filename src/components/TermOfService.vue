@@ -3,8 +3,7 @@
     By continuing, you agree to our
     <a href="#">Terms of Service</a>
     and
-    <a href="#">Privacy Policy</a>
-    .
+    <a href="#">Privacy Policy</a>.
   </div>
 </template>
 <style lang="css">

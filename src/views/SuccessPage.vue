@@ -25,6 +25,11 @@
   .success-view {
     overflow: hidden;
 
+    display: grid;
+    place-items: start;
+    justify-items: center;
+    min-height: 100vh;
+    width: 100vw;
     & span {
       color: var(--btn-secondary);
     }
@@ -38,8 +43,7 @@
   }
 
   .success-page-content {
-    padding-top: 8rem;
-
+    margin-top: -3rem;
     & .heading {
       font-size: 3rem;
 

@@ -30,7 +30,15 @@
         Start my free trial
       </button>
     </div>
-    <div class="links"></div>
+    <div class="links">
+      <div class="lins-chosse-items">
+        <a href="#">Privacy Policy</a>
+        |
+        <a href="#">Terms of Service</a>
+        |
+        <a href="#">Restore Purchase</a>
+      </div>
+    </div>
   </div>
 </template>
 <script setup>
@@ -142,8 +150,7 @@
 
     @media (min-width: 1100px) {
       flex-direction: row;
-      padding: 2rem 1rem;
-      padding-top: 1rem;
+      padding: 0rem 1rem 2rem 1rem;
     }
   }
 
@@ -162,12 +169,29 @@
   }
 
   .choose-view {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-    row-gap: 3rem;
+    display: grid;
+    place-items: center;
     min-height: 100vh;
-    padding-top: 8rem;
+    width: 100vw;
+    padding-top: 3rem;
+    overflow: hidden;
+  }
+
+  .lins-chosse-items {
+    font-family: Roboto;
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.3rem;
+    & > a:hover {
+      color: var(--text-secondary);
+    }
+
+    @media (min-width: 900px) {
+      gap: 0.5rem;
+    }
   }
 </style>

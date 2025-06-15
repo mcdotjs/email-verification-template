@@ -10,7 +10,6 @@
   color: var(--input-text);
 }
 
-/* TODO: */
 .offer-checkbox {
   font-size: var(--text-normal);
   display: flex;

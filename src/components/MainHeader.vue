@@ -24,14 +24,12 @@
 
 <style lang="css">
   .green-user-email {
-    position: absolute;
-    bottom: -2rem;
-    left: 0;
+    height:0px;
     color: #42d392;
+    padding-top: 0.3rem;
     font-size: 2rem;
     font-weight: 400;
     text-align: center;
     width: 100%;
-
   }
 </style>
