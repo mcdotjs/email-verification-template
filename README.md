@@ -14,10 +14,10 @@
 
 ### use docker
 
-> docker build -t gamehouse-cesnak .
+> docker build -t email_template .
 
-> docker run -p 8080:8080 gamehouse-cesnak:latest
+> docker run -p 8080:8080 email_template:latest
 
 
 NOTE: I add universal code (333333) for live testing ... 
-you can check it out here: https://gamehouse.movencode.dev
+you can check it out here: https://ww0oggk408co0wc0g0o0wgwo.movencode.dev/
