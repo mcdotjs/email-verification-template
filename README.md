@@ -21,3 +21,13 @@
 
 NOTE: I add universal code (333333) for live testing ... 
 you can check it out here: https://ww0oggk408co0wc0g0o0wgwo.movencode.dev/
+
+
+# TODO
+
+- frontend email validation 
+- code input state (disabled, bad code) styles
+- components tests
+- linter, prettier
+- polish
+
